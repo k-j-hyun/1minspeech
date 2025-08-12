@@ -7,7 +7,7 @@ worker_class = "sync"
 worker_connections = 50  # 연결 수 제한
 
 # Timeout 설정 (긴 작업 대응)
-timeout = 120  # 30초 → 120초 (파일 처리/임베딩 시간 고려)
+timeout = 600  # 30초 → 600초 (파일 처리/임베딩 시간 고려)
 keepalive = 5
 graceful_timeout = 30
 
