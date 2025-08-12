@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}1분스피치 Chat - AI 문서 분석 및 대화 시스템{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0idXJsKCNncmFkaWVudDApIi8+CjxwYXRoIGQ9Ik04IDEySDI0VjE0SDhWMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOCAxNkgyNFYxOEg4VjE2WiIgZmlsbD0id2hpdGUiLz4KPHA7aCBkPSJNOCAyMEgyNFYyMkg4VjIwWiIgZmlsbD0id2hpdGUiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQwIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM2NjdFRUEiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNzY0QkEyIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHN2Zz4K">
+    
+    <!-- Meta tags for SEO and social sharing -->
+    <meta name="description" content="1분스피치 Chat - AI 기반 문서 분석 및 대화 시스템. GROQ llama-3.1-8b-instant와 Pinecone를 활용한 지능형 문서 처리 서비스.">
+    <meta name="keywords" content="AI, 문서분석, 채팅봇, 1분스피치, 인공지능, 문서처리">
+    <meta name="author" content="spellrain@naver.com">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="1분스피치 Chat - AI 문서 분석 시스템">
+    <meta property="og:description" content="AI 기반 문서 분석 및 대화 시스템으로 효율적인 문서 처리를 경험해보세요.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/static/images/kjh-og.png">
+    
+    <!-- 외부 CDN 및 커스텀 스타일 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- 로딩 오버레이 -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>처리 중...</p>
+        </div>
+    </div>
+
+    <!-- 알림 컨테이너 -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+    
+    <!-- 성능 모니터링 스크립트 -->
+    <script>
+        // 페이지 로드 성능 측정
+        window.addEventListener('load', function() {
+            if (window.performance && window.performance.timing) {
+                const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+                console.log(`✨ 페이지 로드 시간: ${loadTime}ms`);
+            }
+        });
+
+        // 서비스 워커 등록 (추후 PWA 지원용)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // navigator.serviceWorker.register('/sw.js').catch(console.error);
+            });
+        }
+    </script>
+</body>
+</html>

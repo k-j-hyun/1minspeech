@@ -1,0 +1,22 @@
+pip install django
+pip install python-decouple
+pip install django-extensions
+
+1. django-admin startproject ch01 .
+python manage.py runserver
+2. python manage.py startapp home
+settings.py -> INSTALLED_APPS = ["home",] # 추가
+3. python manage.py migrate (db.sqlite3 테이블 생성)
+4. python manage.py createsuperuser (운영자계정 생성)
+
+urls.py, views.py, templates (*.html), models.py, db
+
+context view.py
+
+qs.order_by('age') : 정렬
+st.delete() : 삭제
+Student.objects.filter() : 리스트
+	        get(name='kim') : 하나만 클래스객체로 받아오기
+                    all()
+filter __lt(보다작다), __lte(보다작거나같다), __gt(~보다크다), __gte(~보다크거나같다)
+	__isnull(null인자료), __contains(특정문자열포함)
