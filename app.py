@@ -30,14 +30,14 @@ DOWNLOAD_FOLDER = os.path.join(BASE_DIR, 'downloads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
-print("🔧 메모리 최적화 모드로 시작")
+print("메모리 최적화 모드로 시작")
 
 # 설정 검증
 try:
     Config.validate_config()
-    print("✅ 모든 API 키가 설정되어 있습니다.")
+    print("모든 API 키가 설정되어 있습니다.")
 except ValueError as e:
-    print(f"❌ 설정 오류: {e}")
+    print(f"설정 오류: {e}")
     print(".env 파일을 확인하고 애플리케이션을 다시 시작하세요.")
     sys.exit(1)
 
@@ -325,7 +325,7 @@ def cleanup_session():
         # 현재 인덱스 삭제
         if vector_store.index_name:
             vector_store.delete_current_index()
-            print(f"🗑️ 세션 종료: Pinecone 인덱스 삭제 완료")
+            print(f"세션 종료: Pinecone 인덱스 삭제 완료")
         
         # 세션 데이터 정리
         session.clear()
@@ -347,7 +347,7 @@ def restart_session():
         if vector_store.index_name:
             old_index = vector_store.index_name
             vector_store.delete_current_index()
-            print(f"🔄 새 세션 시작: 기존 인덱스 {old_index} 삭제")
+            print(f"새 세션 시작: 기존 인덱스 {old_index} 삭제")
         
         # 세션 데이터 초기화
         session.clear()
@@ -379,8 +379,8 @@ def download_file(filename):
 
 if __name__ == '__main__':
     # 메모리 최적화 모드 안내
-    print("🔧 FlowMate 메모리 최적화 모드")
-    print("📝 주요 개선사항:")
+    print("FlowMate 메모리 최적화 모드")
+    print("주요 개선사항:")
     print("   - 임베딩 배치 크기: 10 → 3")
     print("   - 임베딩 차원: 4096 → 1024")
     print("   - 청크 크기: 1000 → 500")
@@ -388,7 +388,7 @@ if __name__ == '__main__':
     print("   - 1분 스피치 전용 보고서")
     print("   - 강화된 메모리 관리")
     print("   - 파일 업로드 없이도 일반 대화 가능")
-    print("💰 Pinecone 무료 버전 최적화:")
+    print("Pinecone 무료 버전 최적화:")
     print("   - 세션별 임시 인덱스 생성")
     print("   - 파일 업로드 시 기존 인덱스 삭제")
     print("   - 세션 종료 시 자동 인덱스 정리")
@@ -399,8 +399,8 @@ if __name__ == '__main__':
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
     
-    print(f"📁 Upload folder: {UPLOAD_FOLDER}")
-    print(f"📁 Download folder: {DOWNLOAD_FOLDER}")
+    print(f"Upload folder: {UPLOAD_FOLDER}")
+    print(f"Download folder: {DOWNLOAD_FOLDER}")
     
     # 초기화 테스트
     try:
@@ -408,24 +408,24 @@ if __name__ == '__main__':
         print(embeddings.test_connection())
         print(llm.test_connection())
         print("\n=== 서버 시작 ===")
-        print("🌐 브라우저에서 http://localhost:5000 접속")
-        print("💰 Pinecone 무료 버전: 세션별 인덱스 자동 관리")
-        print("🔄 새로운 파일 업로드 시 기존 데이터 자동 삭제")
-        print("🔄 종료하려면 Ctrl+C")
+        print("브라우저에서 http://localhost:5000 접속")
+        print("Pinecone 무료 버전: 세션별 인덱스 자동 관리")
+        print("새로운 파일 업로드 시 기존 데이터 자동 삭제")
+        print("종료하려면 Ctrl+C")
         print()
     except Exception as e:
-        print(f"❌ 초기화 오류: {e}")
+        print(f"초기화 오류: {e}")
     
     try:
         app.run(debug=True, host='0.0.0.0', port=5000)
     except KeyboardInterrupt:
-        print("\n🔄 애플리케이션 종료 중...")
+        print("\n애플리케이션 종료 중...")
         # 종료 시 Pinecone 인덱스 정리
         try:
             if vector_store.index_name:
-                print(f"🗑️ 종료 시 Pinecone 인덱스 삭제: {vector_store.index_name}")
+                print(f"종료 시 Pinecone 인덱스 삭제: {vector_store.index_name}")
                 vector_store.delete_current_index()
         except Exception as cleanup_error:
-            print(f"⚠️ 인덱스 정리 오류: {cleanup_error}")
+            print(f"인덱스 정리 오류: {cleanup_error}")
         
-        print("✅ 애플리케이션이 안전하게 종료되었습니다.")
+        print("애플리케이션이 안전하게 종료되었습니다.")

@@ -526,6 +526,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 초기 시스템 메시지
     setTimeout(() => {
-        addMessageToChat('system', 'FlowMate에 오신 것을 환영합니다! 파일 업로드 없이도 자유롭게 대화하거나, 왼쪽에서 문서를 업로드하여 문서 기반 대화를 시작할 수 있습니다.');
+        addMessageToChat('system', '1MinSpeech에 오신 것을 환영합니다! 파일 업로드 없이도 자유롭게 대화하거나, 왼쪽에서 문서를 업로드하여 문서 기반 대화를 시작할 수 있습니다.');
     }, 500);
 });
