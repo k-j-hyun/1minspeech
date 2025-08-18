@@ -231,7 +231,7 @@ def chat():
 def generate_report():
     """보고서 생성 - 1분 스피치 형태"""
     data = request.json
-    query = data.get('query', '업로드된 문서를 바탕으로 1분 스피치를 작성해주세요.')
+    query = data.get('query', '업로드된 문서를 바탕으로 1분 스피치를 작성해주세요. 단, 반드시 바이어들이 하는 말로 작성을 해주세요.')
     format_type = data.get('format', 'docx')  # docx 또는 txt
     
     try:
@@ -260,6 +260,7 @@ def generate_report():
 요청사항: {query}
 
 1분 스피치 작성 가이드라인:
+- 반드시 바이어들이 하는말로 작성
 - 대략 200-250단어 (한글 300-400자)
 - 명확한 주제와 결론
 - 간결하고 인상적인 메시지
